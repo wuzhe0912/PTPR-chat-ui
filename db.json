@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "uid": 0,
+      "name": "John",
+      "address": "Taiwan",
+      "email": "john@gmail.com",
+      "contact": "09123456"
+    }
+  ] 
+}
