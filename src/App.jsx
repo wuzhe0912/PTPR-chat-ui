@@ -12,7 +12,7 @@ import {
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './App.css';
+import AppStyles from './App.module.css';
 
 const apiUrl = 'http://localhost:5000/';
 
@@ -20,27 +20,13 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetchData();
+    loadData();
   }, []);
 
-  const fetchData = async () => {
-    const data = await Promise.all([fetchUserData()]);
-    console.log(1, data);
+  const loadData = async () => {
+    const response = await axios.get(apiUrl);
+    setData(response.data);
   };
-  const fetchUserData = () => {
-    return fetch(`${apiUrl}users`)
-      .then((response) => response.json())
-      .then((data) => {
-        return data;
-      });
-  };
-
-  // const loadUsers = async (url, params) => {
-  //   let response = await fetch(`${url}${params}`);
-  //   let result = await response.json();
-  //   console.log(1, result);
-  //   setData(result);
-  // };
 
   return (
     <>
@@ -50,7 +36,7 @@ function App() {
           Using React with JSON Server to build CRUD App and Deploy Heroku.
         </Navbar.Brand>
       </Navbar>
-      <Container style={{ marginTop: '70px' }}>
+      <Container style={AppStyles.mainContainer}>
         <Row>
           <Col md={4}>
             <h2>Form</h2>
